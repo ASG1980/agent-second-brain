@@ -1,5 +1,17 @@
 # Entry Classification
 
+<!--
+╔══════════════════════════════════════════════════════════════════╗
+║  КАК НАСТРОИТЬ ЭТОТ ФАЙЛ                                         ║
+╠══════════════════════════════════════════════════════════════════╣
+║  1. Замените [Your Client Names] на имена ваших клиентов        ║
+║  2. Замените [Your Company] на название вашей компании          ║
+║  3. Замените [@your_channel] на ваш Telegram-канал              ║
+║  4. Добавьте свои домены работы, если они отличаются            ║
+║  5. Удалите этот комментарий после настройки                    ║
+╚══════════════════════════════════════════════════════════════════╝
+-->
+
 ## Work Domains → Categories
 
 Based on user's work context (see [ABOUT.md](ABOUT.md)):
@@ -7,7 +19,8 @@ Based on user's work context (see [ABOUT.md](ABOUT.md)):
 ### Client Work
 Брифы, стратегии, креатив, кампании, KPI, предложения
 
-**Keywords:** Pepsi, Haval, Lactalis, Chevrolet, OQ, Beeline, Honor, клиент, бриф, презентация, дедлайн, KPI
+<!-- Добавьте имена ваших клиентов через запятую -->
+**Keywords:** [Your Client Names], клиент, бриф, презентация, дедлайн, KPI
 
 **→ Category:** task (p1-p2) → Todoist
 
@@ -25,17 +38,19 @@ Based on user's work context (see [ABOUT.md](ABOUT.md)):
 
 **→ Category:** idea или project → thoughts/
 
-### Agency Ops
+### Company Ops
 Команда, процессы, автоматизация, найм, управление, финансы
 
-**Keywords:** команда, найм, процесс, HR, финансы, TDI, агентство
+<!-- Замените [Your Company] на название вашей компании/проекта -->
+**Keywords:** команда, найм, процесс, HR, финансы, [Your Company]
 
 **→ Category:** task или project (depends on urgency)
 
 ### Content
 Посты, идеи, тезисы для Telegram и LinkedIn
 
-**Keywords:** пост, @aimastersme, LinkedIn, контент, тезис, статья
+<!-- Замените [@your_channel] на ваш Telegram-канал или удалите если не нужно -->
+**Keywords:** пост, [@your_channel], LinkedIn, контент, тезис, статья
 
 **→ Category:** idea → thoughts/ideas/ или task если с дедлайном
 
@@ -47,7 +62,7 @@ Based on user's work context (see [ABOUT.md](ABOUT.md)):
 Entry text contains...
 │
 ├─ Client brand or deadline? ────────────────────> TASK (p1-p2)
-│  (Pepsi, Haval, клиент, дедлайн, презентация)
+│  ([Your Clients], клиент, дедлайн, презентация)
 │
 ├─ Operational/urgent? ──────────────────────────> TASK (p2-p3)
 │  (нужно сделать, не забыть, позвонить, встреча)
@@ -141,7 +156,8 @@ tags: [tag1, tag2]
 [Ключевая идея]
 
 ## Implication
-[Что это значит для TDI/продукта/стратегии]
+<!-- Замените [Your Company] на название вашей компании -->
+[Что это значит для [Your Company]/продукта/стратегии]
 
 ## Next Action
 [Конкретный шаг — не абстрактный]
@@ -153,7 +169,7 @@ tags: [tag1, tag2]
 
 При создании мыслей НЕ делать:
 - Абстрактные рассуждения без Next Action
-- Академическая теория без применения к TDI/продукту
+- Академическая теория без применения к вашему проекту/продукту
 - Повторы без синтеза (кластеризуй похожие!)
 - Хаотичные списки без приоритетов
 - Задачи типа "подумать о..." (конкретизируй!)

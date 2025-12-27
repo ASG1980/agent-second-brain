@@ -95,7 +95,7 @@ Format: • [[Note A]] ↔ [[Note B]]
 Get tomorrow's tasks from Todoist, sort by priority, show top 3.
 
 ### Goals Progress (📈)
-Read goals/1-yearly-2026.md, show goals with recent activity.
+Read goals/1-yearly-2025.md, show goals with recent activity.
 Emojis: 🔴 0-25%, 🟡 26-50%, 🟢 51-75%, ✅ 76-100%
 
 ## Error Report

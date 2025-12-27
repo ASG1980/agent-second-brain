@@ -115,36 +115,36 @@ Track new links created:
 
 ## Example Workflow
 
-New thought: "Chatterbox TTS can be used for voice agents"
+<!-- Это пример — замените на свои реальные темы -->
+New thought: "Новый инструмент X можно использовать для проекта Y"
 
 1. **Search:**
-   - Grep "voice" in thoughts/ → finds [[Voice Agents Architecture]]
-   - Grep "TTS" in thoughts/ → no results
-   - Grep "Chatterbox" → no results
+   - Grep "keyword" in thoughts/ → finds related notes
+   - Grep "tool" in thoughts/ → no results
 
 2. **Check MOC:**
-   - MOC-learnings.md has "AI & Voice" section
+   - MOC-learnings.md has relevant section
 
 3. **Goals:**
-   - 1-yearly-2025.md has "AI Development" goal
+   - 1-yearly-2025.md has matching goal
 
 4. **Create links:**
    ```yaml
    related:
-     - "[[thoughts/ideas/voice-agents-architecture.md]]"
-     - "[[goals/1-yearly-2025#AI Development]]"
+     - "[[thoughts/ideas/related-note.md]]"
+     - "[[goals/1-yearly-2025#Your Goal]]"
    ```
 
 5. **Update MOC-learnings.md:**
    ```markdown
-   ### AI & Voice
-   - [[thoughts/learnings/2024-12-20-chatterbox-tts.md]] — TTS for voice agents
+   ### Your Category
+   - [[thoughts/learnings/2024-12-20-new-learning.md]] — Description
    ```
 
 6. **Report:**
    ```
    <b>🔗 Новые связи:</b>
-   • [[Chatterbox TTS]] ↔ [[Voice Agents Architecture]]
+   • [[New Note]] ↔ [[Related Note]]
    ```
 
 ## Orphan Detection
