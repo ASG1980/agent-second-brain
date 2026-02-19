@@ -4,7 +4,7 @@ Map of Content for learnings and insights.
 
 ## Recent
 
-<!-- New learnings will appear here -->
+- [[2026-02-10-joinposter-guide-kofeinia]] — Гайд и шаблон бизнес-плана от JoinPoster для кофейни
 
 ## By Topic
 

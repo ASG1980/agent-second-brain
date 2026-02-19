@@ -4,7 +4,7 @@ Map of Content for personal reflections.
 
 ## Recent
 
-<!-- Recent reflections will appear here -->
+- [[2026-02-08-zemelny-uchastok-astana]] — Земельный участок 10 соток под ИЖС, планы на дом 150м²
 
 ## By Theme
 

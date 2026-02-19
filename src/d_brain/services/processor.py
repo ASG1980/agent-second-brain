@@ -194,9 +194,14 @@ CRITICAL OUTPUT FORMAT:
             )
 
             if result.returncode != 0:
-                logger.error("Claude processing failed: %s", result.stderr)
+                logger.error(
+                    "Claude processing failed (rc=%d): stderr=%s stdout=%s",
+                    result.returncode,
+                    result.stderr,
+                    result.stdout,
+                )
                 return {
-                    "error": result.stderr or "Claude processing failed",
+                    "error": result.stderr or result.stdout or "Claude processing failed",
                     "processed_entries": 0,
                 }
 
@@ -298,9 +303,14 @@ EXECUTION:
             )
 
             if result.returncode != 0:
-                logger.error("Claude execution failed: %s", result.stderr)
+                logger.error(
+                    "Claude execution failed (rc=%d): stderr=%s stdout=%s",
+                    result.returncode,
+                    result.stderr,
+                    result.stdout,
+                )
                 return {
-                    "error": result.stderr or "Claude execution failed",
+                    "error": result.stderr or result.stdout or "Claude execution failed",
                     "processed_entries": 0,
                 }
 
@@ -374,9 +384,14 @@ CRITICAL OUTPUT FORMAT:
             )
 
             if result.returncode != 0:
-                logger.error("Weekly digest failed: %s", result.stderr)
+                logger.error(
+                    "Weekly digest failed (rc=%d): stderr=%s stdout=%s",
+                    result.returncode,
+                    result.stderr,
+                    result.stdout,
+                )
                 return {
-                    "error": result.stderr or "Weekly digest failed",
+                    "error": result.stderr or result.stdout or "Weekly digest failed",
                     "processed_entries": 0,
                 }
 

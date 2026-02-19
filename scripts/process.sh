@@ -3,10 +3,10 @@ set -e
 
 # PATH for systemd (claude, uv, npx in ~/.local/bin and node)
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
-export HOME="/home/shima"
+# export HOME="/home/myuser"
 
 # Paths
-PROJECT_DIR="/home/shima/projects/agent-second-brain"
+PROJECT_DIR="/home/myuser/agent-second-brain"
 VAULT_DIR="$PROJECT_DIR/vault"
 ENV_FILE="$PROJECT_DIR/.env"
 
@@ -64,6 +64,13 @@ uv run .claude/skills/graph-builder/scripts/analyze.py || echo "Graph rebuild fa
 cd "$PROJECT_DIR"
 
 # Git commit
+# Configure git push with token from .env
+if [ -n "$GITHUB_TOKEN" ] && [ -n "$GITHUB_USER" ]; then
+    git remote set-url origin "https://$GITHUB_TOKEN@github.com/$GITHUB_USER/agent-second-brain.git"
+    git config user.name "$GITHUB_USER"
+    git config user.email "bot@localhost"
+fi
+
 git add -A
 git commit -m "chore: process daily $TODAY" || true
 git push || true
