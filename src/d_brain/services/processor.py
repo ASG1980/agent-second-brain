@@ -329,6 +329,117 @@ EXECUTION:
             logger.exception("Unexpected error during execution")
             return {"error": str(e), "processed_entries": 0}
 
+    def generate_market_digest(self, market_table: str) -> dict[str, Any]:
+        """Generate morning market digest with Claude as financial analyst.
+
+        Args:
+            market_table: Pre-formatted price table from market.py
+
+        Returns:
+            Report dict with 'report' key containing Telegram HTML
+        """
+        today = date.today()
+
+        prompt = f"""Ты — опытный финансовый аналитик. Сегодня {today}.
+
+АКТУАЛЬНЫЕ РЫНОЧНЫЕ ДАННЫЕ (цены закрытия + изменение за день):
+{market_table}
+
+ТВОЯ ЗАДАЧА:
+Используй WebSearch для поиска актуальных новостей и выдай глубокую аналитическую сводку.
+
+ШАГ 1 — Поиск (обязательно):
+- Ищи: "market trends {today}" "hot sectors week" "upcoming IPO 2026"
+- Ищи: "rare earth metals trend" "uranium stocks outlook" "semiconductor market"
+- Ищи: "Kazakhstan economy" "KSPI stock" "KASE index"
+- Ищи новости по секторам с наибольшим движением из данных выше
+
+ШАГ 2 — Анализ трендов (главное!):
+Твоя ключевая задача — поймать тренд заранее, как это было:
+• Золото: тренд начался → рост +30%
+• Сейчас: редкоземельные металлы, уран, ИИ-полупроводники
+• Что СЛЕДУЮЩЕЕ? Квантовые вычисления? Ядерная энергетика? Недвижимость?
+
+ШАГ 3 — Контекст для Казахстана:
+- KZ экономика зависит от нефти, урана, меди, зерна
+- KSPI (Kaspi) — главная KZ компания на NASDAQ
+- USD/KZT курс влияет на покупательную способность
+- Санкции не касаются KZ рынка, но влияют косвенно
+
+ФОРМАТ ОТВЕТА — только HTML для Telegram:
+
+📊 <b>Аналитика {today}</b>
+
+<b>Рынки сегодня:</b>
+[топ движения дня — только самые значимые изменения, 4-5 строк]
+
+<b>🔥 Главный тренд сейчас:</b>
+[1-2 абзаца: что горячее, почему, сколько ещё может расти]
+
+<b>🚀 Следующий тренд — что искать:</b>
+[твой прогноз: какой сектор/актив начинает набирать силу]
+
+<b>📅 Ближайшие IPO и события:</b>
+[конкретные названия компаний, даты если нашёл]
+
+<b>🇰🇿 Для Казахстана:</b>
+[как текущие тренды влияют на KZ, что учитывать]
+
+<b>⚡ Что изучить сегодня:</b>
+[3-5 конкретных тикеров или тем для исследования]
+
+ПРАВИЛА ФОРМАТА:
+- NO markdown: no **, no ##, no ```, no таблицы
+- Allowed tags: <b>, <i>, <code>, <s>, <u>
+- Telegram limit 4096 chars — будь ёмким
+- Пиши на русском языке
+- Конкретика важнее общих слов"""
+
+        try:
+            env = os.environ.copy()
+
+            result = subprocess.run(
+                [
+                    "claude",
+                    "--print",
+                    "--dangerously-skip-permissions",
+                    "--mcp-config",
+                    str(self._mcp_config_path),
+                    "-p",
+                    prompt,
+                ],
+                cwd=self.vault_path.parent,
+                capture_output=True,
+                text=True,
+                timeout=DEFAULT_TIMEOUT,
+                check=False,
+                env=env,
+            )
+
+            if result.returncode != 0:
+                logger.error(
+                    "Market digest failed (rc=%d): stderr=%s stdout=%s",
+                    result.returncode,
+                    result.stderr,
+                    result.stdout,
+                )
+                return {
+                    "error": result.stderr or result.stdout or "Market digest failed",
+                    "processed_entries": 0,
+                }
+
+            return {"report": result.stdout.strip(), "processed_entries": 1}
+
+        except subprocess.TimeoutExpired:
+            logger.error("Market digest timed out")
+            return {"error": "Market digest timed out", "processed_entries": 0}
+        except FileNotFoundError:
+            logger.error("Claude CLI not found")
+            return {"error": "Claude CLI not installed", "processed_entries": 0}
+        except Exception as e:
+            logger.exception("Unexpected error during market digest")
+            return {"error": str(e), "processed_entries": 0}
+
     def generate_weekly(self) -> dict[str, Any]:
         """Generate weekly digest with Claude.
 

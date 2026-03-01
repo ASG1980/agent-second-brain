@@ -30,6 +30,7 @@ async def cmd_start(message: Message) -> None:
         "/process - обработать записи\n"
         "/do - выполнить произвольный запрос\n"
         "/weekly - недельный дайджест\n"
+        "/market - аналитика рынков (США + KZ)\n"
         "/help - справка",
         reply_markup=get_main_keyboard(),
     )
@@ -50,7 +51,8 @@ async def cmd_help(message: Message) -> None:
         "/status - сколько записей сегодня\n"
         "/process - обработать записи\n"
         "/do - выполнить произвольный запрос\n"
-        "/weekly - недельный дайджест\n\n"
+        "/weekly - недельный дайджест\n"
+        "/market - аналитика рынков (США + KZ)\n\n"
         "<i>Пример: /do перенеси просроченные задачи на понедельник</i>"
     )
 

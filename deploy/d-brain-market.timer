@@ -1,0 +1,13 @@
+[Unit]
+Description=Run d-brain market digest weekdays at 10:00 (Asia/Almaty)
+
+[Timer]
+# 10:00 Asia/Almaty = 04:00 UTC
+# Adjust OnCalendar to match server timezone:
+#   If server is UTC:         Mon..Fri 04:00
+#   If server is Asia/Almaty: Mon..Fri 10:00
+OnCalendar=Mon..Fri 04:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
