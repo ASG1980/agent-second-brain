@@ -8,7 +8,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.types import Update
+from aiogram.types import BotCommand, Update
 
 from d_brain.config import Settings
 
@@ -88,6 +88,16 @@ async def run_bot(settings: Settings) -> None:
 
     # Always add auth middleware for security (it handles allow_all_users internally)
     dp.update.middleware(create_auth_middleware(settings))
+
+    # Register bot commands menu (visible when user taps "/" in chat)
+    await bot.set_my_commands([
+        BotCommand(command="status", description="Статус сегодняшнего дня"),
+        BotCommand(command="process", description="Обработать записи"),
+        BotCommand(command="weekly", description="Недельный дайджест"),
+        BotCommand(command="market", description="Аналитика рынков (США + KZ)"),
+        BotCommand(command="do", description="Выполнить произвольный запрос"),
+        BotCommand(command="help", description="Справка"),
+    ])
 
     logger.info("Starting bot polling...")
     try:

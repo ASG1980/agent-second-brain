@@ -43,6 +43,14 @@ async def btn_do(message: Message, state: FSMContext) -> None:
     )
 
 
+@router.message(F.text == "📈 Рынок")
+async def btn_market(message: Message) -> None:
+    """Handle Market button."""
+    from d_brain.bot.handlers.market import cmd_market
+
+    await cmd_market(message)
+
+
 @router.message(F.text == "❓ Помощь")
 async def btn_help(message: Message) -> None:
     """Handle Help button."""
