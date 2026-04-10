@@ -2,7 +2,7 @@
 Description=Run d-brain processing daily at 21:00
 
 [Timer]
-OnCalendar=*-*-* 21:00:00
+OnCalendar=*-*-* 03:00:00
 Persistent=true
 
 [Install]

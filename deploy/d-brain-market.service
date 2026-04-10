@@ -8,5 +8,6 @@ User=myuser
 WorkingDirectory=/home/myuser/agent-second-brain
 ExecStart=/home/myuser/.local/bin/uv run python scripts/market.py
 EnvironmentFile=/home/myuser/agent-second-brain/.env
+Environment=PATH=/home/myuser/.local/bin:/usr/local/bin:/usr/bin:/bin
 StandardOutput=journal
 StandardError=journal

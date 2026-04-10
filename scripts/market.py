@@ -55,10 +55,13 @@ async def main() -> None:
             logger.error("No allowed user IDs configured")
             return
 
-        try:
-            await bot.send_message(chat_id=user_id, text=report)
-        except Exception:
-            await bot.send_message(chat_id=user_id, text=report, parse_mode=None)
+        MAX_LEN = 4096
+        chunks = [report[i:i + MAX_LEN] for i in range(0, len(report), MAX_LEN)]
+        for chunk in chunks:
+            try:
+                await bot.send_message(chat_id=user_id, text=chunk)
+            except Exception:
+                await bot.send_message(chat_id=user_id, text=chunk, parse_mode=None)
 
         logger.info("Market digest sent to user %s", user_id)
     finally:

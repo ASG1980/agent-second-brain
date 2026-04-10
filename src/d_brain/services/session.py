@@ -56,7 +56,7 @@ class SessionStore:
             return []
 
         entries = []
-        with path.open("r", encoding="utf-8") as f:
+        with path.open("r", encoding="utf-8", errors="ignore") as f:
             for line in f:
                 if line.strip():
                     try:
